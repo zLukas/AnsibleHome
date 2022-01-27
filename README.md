@@ -1,5 +1,5 @@
 # Desription 
-simple ansible roles for configuring local raspberry pi machines.
+Simple ansible roles for configuring local raspberry pi machines.
 
 ## Prequisities 
 * Python 3.6+
