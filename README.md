@@ -7,5 +7,4 @@ simple ansible roles for configuring local raspberry pi machines.
 
 ## Usage
 1. Install [ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
-2. Run playbook:  
-`$ ansible-playbook rpi.yaml -i inventory.ini`
+2. Run playbook:  `$ ansible-playbook rpi.yaml -i inventory.ini`
