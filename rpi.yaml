@@ -2,10 +2,8 @@
 - hosts: all
   become: yes 
   gather_facts: yes
-  tasks:
-    - name: update all packages 
-      apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+  roles:
+    - install-packages
 
-    - name: Upgrade all apt packages
-      apt: upgrade=dist force_apt_get=yes
+
 ...
