@@ -4,6 +4,6 @@
   gather_facts: yes
   roles:
     - install-packages
-
+    - setup-git/pydrive
 
 ...

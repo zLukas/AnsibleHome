@@ -1,0 +1,28 @@
+---
+
+- name: check git dir
+  fail: 
+    msg: "PYDRIVE_GIT_DIR not defined"
+  when: git_dir == ''
+
+- name: check creds dir
+  fail: 
+    msg: "PY_DRIVE_CREDS_SRC or PY_DRIVE_CREDS_DEST is empty, cannot copy creds"
+  when: pydrive_creds.src == '' or pydrive_creds.dest == ''
+
+
+- name: create git directory
+  file:
+    path: "{{  git_dir  }}"
+    state: directory
+    mode: '0701'
+
+- name: pull git repos to {{ git_dir }}"
+  git:
+    repo: "{{ pyDrive_repo_url }}"
+    dest: "{{ git_dir }}"
+
+- name: copy google creds
+  file:
+    src: "{{ pydrive_creds.src }}"
+    dest: "{{ pydrive_creds.dest }}"

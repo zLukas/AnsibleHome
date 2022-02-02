@@ -1,0 +1,5 @@
+pyDrive_repo_url: https://github.com/zLukas/pyDrive.git
+git_dir: "{{ lookup('env','PYDRIVE_DIR') }}"  
+pydrive_creds:
+    src: "{{ lookup('env','PY_DRIVE_CREDS_SRC') }}"
+    dest: "{{ lookup('env','PY_DRIVE_CREDS_DEST') }}"
