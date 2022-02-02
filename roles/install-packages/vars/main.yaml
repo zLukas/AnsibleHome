@@ -4,4 +4,7 @@ apt_packages:
     - python3-pip 
     - git 
     - wget
+
+python_packages:
+    - pipenv
 ...
