@@ -1,28 +1,26 @@
 ---
 
-- name: check git dir
-  fail: 
-    msg: "PYDRIVE_GIT_DIR not defined"
-  when: git_dir == ''
 
-- name: check creds dir
+- name: check pydrive creds dir
   fail: 
     msg: "PY_DRIVE_CREDS_SRC or PY_DRIVE_CREDS_DEST is empty, cannot copy creds"
   when: pydrive_creds.src == '' or pydrive_creds.dest == ''
 
-
 - name: create git directory
   file:
-    path: "{{  git_dir  }}"
+    path: "/home/{{ ansible_user }}/git"
     state: directory
-    mode: '0701'
 
-- name: pull git repos to {{ git_dir }}"
+- name: pull git repos to git folder
   git:
-    repo: "{{ pyDrive_repo_url }}"
-    dest: "{{ git_dir }}"
+    repo: "{{ item.value.url }}"
+    dest: "/home/{{ ansible_user }}/git/{{ item.value.dir }}"
+    clone: yes
+  loop: "{{ lookup('dict', git_repos) }}"
 
 - name: copy google creds
   file:
     src: "{{ pydrive_creds.src }}"
     dest: "{{ pydrive_creds.dest }}"
+
+...

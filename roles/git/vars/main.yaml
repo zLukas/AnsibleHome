@@ -1,0 +1,18 @@
+---
+git_repos:
+    pydrive:
+        url: https://github.com/zLukas/pyDrive.git
+        dir: pydrive
+
+    pihole:
+        url: https://github.com/pi-hole/pi-hole.git
+        dir: pihole
+    
+    telegraf:
+        url: https://github.com/influxdata/telegraf.git
+        dir: telegraf
+
+pydrive_creds:
+    src: "{{ lookup('env','PY_DRIVE_CREDS_SRC') }}"
+    dest: "{{ lookup('env','PY_DRIVE_CREDS_DEST') }}"
+...
