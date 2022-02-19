@@ -1,6 +1,5 @@
 ---
 
-
 - name: check pydrive creds dir
   fail: 
     msg: "PY_DRIVE_CREDS_SRC or PY_DRIVE_CREDS_DEST is empty, cannot copy creds"
@@ -17,10 +16,11 @@
     dest: "/home/{{ ansible_user }}/git/{{ item.value.dir }}"
     clone: yes
   loop: "{{ lookup('dict', git_repos) }}"
+  when: item.value.dir != git_repos.telegraf.dir
 
-- name: copy google creds
-  file:
-    src: "{{ pydrive_creds.src }}"
-    dest: "{{ pydrive_creds.dest }}"
+# - name: copy google creds
+#   copy:
+#     src: "{{ pydrive_creds.src }}"
+#     dest: "{{ pydrive_creds.dest }}"
 
 ...

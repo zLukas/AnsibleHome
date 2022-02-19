@@ -1,0 +1,24 @@
+# - name: check if config already exist
+- name: check if telegraf config exist
+  stat:
+    path: git_repos.telegraf.dir
+  register: telegraf_dir 
+
+- name: check if host is rpi zero
+  meta: end_host
+  when: telegraf_dir.stat.exists == false
+
+- name: install telegraf
+  become: yes
+  make:
+    chdir: git_repos.telegraf.dir/telegraf
+
+
+- name: create config file
+  template:
+    src: telegraf_config.j2
+    dest: git_repos.telegraf.dir
+
+- name: run telegraf
+  shell: cd git_repos.telegraf.dir &&  ./telegraf --config telegraf.conf > telegraf.log
+

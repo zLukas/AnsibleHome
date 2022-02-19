@@ -1,0 +1,15 @@
+---
+git_repos:
+    pydrive:
+        url: https://github.com/zLukas/pyDrive.git
+        dir: "/home/{{ ansible_user }}/git/pydrive"
+
+    pihole:
+        url: https://github.com/pi-hole/pi-hole.git
+        dir: "/home/{{ ansible_user }}/git/pihole"
+        
+    #not usable on rpi zero
+    telegraf:
+        url: https://github.com/influxdata/telegraf.git
+        dir: "/home/{{ ansible_user }}/git/telegraf"
+...

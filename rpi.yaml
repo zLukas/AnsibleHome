@@ -1,8 +1,10 @@
 ---
+
 - hosts: all
   become: yes 
-  gather_facts: no
+  gather_facts: yes
   roles:
-    # - install-packages
+    - install-packages
     - git
+    - telegraf 
 ...

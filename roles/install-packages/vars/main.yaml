@@ -1,9 +1,17 @@
 ---
-apt_packages: 
+rpi_zero_apt_packages: 
     - python3
     - python3-pip 
     - git 
     - wget
+
+apt_packages:
+    - python3
+    - python3-pip 
+    - git 
+    - wget
+    - go 
+    - make
 
 python_packages:
     - pipenv
