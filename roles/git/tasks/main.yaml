@@ -1,9 +1,6 @@
 ---
 
-- name: check pydrive creds dir
-  fail: 
-    msg: "PY_DRIVE_CREDS_SRC or PY_DRIVE_CREDS_DEST is empty, cannot copy creds"
-  when: pydrive_creds.src == '' or pydrive_creds.dest == ''
+
 
 - name: create git directory
   file:
@@ -17,6 +14,10 @@
     clone: yes
   loop: "{{ lookup('dict', git_repos) }}"
   when: item.value.dir != git_repos.telegraf.dir
+
+- name: end task if PY_DRIVE_CREDS_SRC or PY_DRIVE_CREDS_DEST is not defined
+  meta: end_host
+  when: pydrive_creds.src == '' or pydrive_creds.dest == ''
 
 - name: copy google creds
   copy:
