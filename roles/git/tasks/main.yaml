@@ -18,9 +18,9 @@
   loop: "{{ lookup('dict', git_repos) }}"
   when: item.value.dir != git_repos.telegraf.dir
 
-# - name: copy google creds
-#   copy:
-#     src: "{{ pydrive_creds.src }}"
-#     dest: "{{ pydrive_creds.dest }}"
+- name: copy google creds
+  copy:
+    src: "{{ pydrive_creds.src }}"
+    dest: "{{ pydrive_creds.dest }}"
 
 ...
