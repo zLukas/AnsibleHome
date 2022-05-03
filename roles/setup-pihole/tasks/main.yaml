@@ -11,5 +11,4 @@
     dest: ~/pi-hole/basic-install.sh
     mode: u+x
 
-
 ...
