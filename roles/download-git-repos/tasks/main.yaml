@@ -1,27 +1,24 @@
 ---
-
-
-
 - name: create git directory
   file:
     path: "/home/{{ ansible_user }}/git"
     state: directory
 
-- name: pull git repos to git folder
+- name: pull rpi git repos
+  git:
+    repo: "{{ git_repos.pyweather.url }}"
+    dest: "/home/{{ ansible_user }}/git/{{ git_repos.pyweather.dir }}"
+  when: ansible_host == "pizero"
+
+- name: end play for raspberry pi
+  meta: end_host
+  when: ansible_host == "pizero"
+
+- name: pull git repos into git folder
   git:
     repo: "{{ item.value.url }}"
     dest: "/home/{{ ansible_user }}/git/{{ item.value.dir }}"
     clone: yes
   loop: "{{ lookup('dict', git_repos) }}"
   when: item.value.dir != git_repos.telegraf.dir
-
-- name: end task if PY_DRIVE_CREDS_SRC or PY_DRIVE_CREDS_DEST is not defined
-  meta: end_host
-  when: pydrive_creds.src == '' or pydrive_creds.dest == ''
-
-- name: copy google creds
-  copy:
-    src: "{{ pydrive_creds.src }}"
-    dest: "{{ pydrive_creds.dest }}"
-
 ...

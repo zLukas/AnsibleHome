@@ -1,10 +1,9 @@
 ---
 
-- hosts: all
+- hosts: raspberry
   become: yes 
   gather_facts: yes
   roles:
     - install-packages
-    - git
-    - telegraf 
+    - download-git-repos
 ...

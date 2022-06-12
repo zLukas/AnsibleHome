@@ -8,8 +8,14 @@ git_repos:
         url: https://github.com/pi-hole/pi-hole.git
         dir: "/home/{{ ansible_user }}/git/pihole"
         
-    #not usable on rpi zero
     telegraf:
         url: https://github.com/influxdata/telegraf.git
         dir: "/home/{{ ansible_user }}/git/telegraf"
+
+    pyweather:
+        url: https://github.com/zLukas/pyWeather.git
+        dir: "/home/{{ ansible_user }}/git/pyWeather"
 ...
+
+
+# install pi-hole  and nothing else 
