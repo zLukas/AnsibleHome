@@ -6,4 +6,8 @@
     update_cache: "{{ run_apt_update_upgrade }}"
   when: ansible_facts['os_family']|lower == 'debian'
 
+
+- name: install python packages
+  pip:
+    name: "{{ python_packages }}"
 ...

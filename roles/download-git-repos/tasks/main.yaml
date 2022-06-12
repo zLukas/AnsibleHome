@@ -7,7 +7,7 @@
 - name: pull rpi git repos
   git:
     repo: "{{ git_repos.pyweather.url }}"
-    dest: "/home/{{ ansible_user }}/git/{{ git_repos.pyweather.dir }}"
+    dest: "{{ git_repos.pyweather.dir }}"
   when: ansible_host == "pizero"
 
 - name: end play for raspberry pi
@@ -17,7 +17,7 @@
 - name: pull git repos into git folder
   git:
     repo: "{{ item.value.url }}"
-    dest: "/home/{{ ansible_user }}/git/{{ item.value.dir }}"
+    dest: "{{ item.value.dir }}"
     clone: yes
   loop: "{{ lookup('dict', git_repos) }}"
   when: item.value.dir != git_repos.telegraf.dir
