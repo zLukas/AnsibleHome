@@ -1,0 +1,6 @@
+[submodule "roles/setup/command-center/install-docker"]
+	path = roles/setup/command-center/install-docker
+	url = https://github.com/geerlingguy/ansible-role-docker.git
+[submodule "roles/setup/command-center/install-minikube"]
+	path = roles/setup/command-center/install-minikube
+	url = https://github.com/gantsign/ansible_role_minikube.git

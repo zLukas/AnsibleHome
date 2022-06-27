@@ -1,5 +1,5 @@
 ---
-apt_packages: 
+rpi_apt_packages: 
     - python3.9
     - python3-pip 
     - git 
@@ -7,12 +7,28 @@ apt_packages:
     - vim 
     - i2c-tools
 
-run_apt_update_upgrade: no
 
-python_packages:
+
+dell_apt_packages:
+    - python3.9
+    - python3-pip 
+    - git 
+    - wget
+    - ca-certificates
+    - curl
+    - gnupg
+    - lsb-release
+    - gpg
+
+
+run_apt_update_upgrade: yes
+
+rpi_python_packages:
     - pipenv
     - "flask==2.1.2"
     - "flask-wtf==1.0.1"
     - "rpi.bme280==0.2.4"
     - "smbus2"
+
+
 ...
