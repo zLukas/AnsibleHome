@@ -1,0 +1,10 @@
+---
+run_apt_update_upgrade: no
+rpi_packages: 
+    - python3.9
+    - python3-pip 
+    - git 
+    - wget
+    - vim 
+    - i2c-tools
+...

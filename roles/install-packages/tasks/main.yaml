@@ -1,10 +1,4 @@
 ---
-- name: install rpi packages
-  package:
-    name: "{{ rpi_apt_packages }}"
-    state: present
-    update_cache: "{{ run_apt_update_upgrade }}"
-  when: ansible_host=="rpi_zero"
 
 - name: install dell packages
   package:
@@ -13,13 +7,4 @@
     update_cache: "{{ run_apt_update_upgrade }}"
   when: ansible_host=="command-center"
 
-- name: install dell packages
-  package:
-
-
-
-- name: install python packages
-  pip:
-    name: "{{ rpi_python_packages }}"
-  when: ansible_host=="rpi_zero"
 ...

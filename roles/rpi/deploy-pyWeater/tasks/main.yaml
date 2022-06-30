@@ -1,0 +1,39 @@
+---
+
+- name: create git directory
+  file:
+    path: "/home/{{ ansible_user }}/git"
+    state: directory
+
+- name: pull git repo
+  git:
+    repo: "{{ pyweather.url }}"
+    dest: "{{ pyweather.dir }}"
+
+- name: install dependencies
+  pip:
+    name: "{{ python_packages }}"
+
+
+- name: check if old instances are running
+  stat:
+    path: "{{ pyweather.dir }}/run.pid"
+  register: old_instance_pid
+
+- name: kill old instance
+  shell: kill -9 $(echo run.pid)
+  when: old_instance_pid.stat.exists == true
+
+- name: Changing perm of "run_station_process.sh", adding "+x"
+  file: 
+    dest: "{{ pyweather.dir }}/run_station_process.sh"
+    mode: a+x
+
+
+- name: run instance
+  shell:  ./run_station_process.sh
+  args:  
+    chdir:  "{{ pyweather.dir }}"
+    creates: pid.log
+
+...

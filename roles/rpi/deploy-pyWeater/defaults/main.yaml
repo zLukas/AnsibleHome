@@ -1,0 +1,13 @@
+---
+#TODO: dependencies should be read from pyWeather repo
+python_packages:
+      - pipenv
+      - "flask==2.1.2"
+      - "flask-wtf==1.0.1"
+      - "rpi.bme280==0.2.4"
+      - "smbus2"
+
+pyweather:
+        url: https://github.com/zLukas/pyWeather.git
+        dir: "/home/{{ ansible_user }}/git/pyWeather"
+...

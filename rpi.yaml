@@ -1,10 +1,11 @@
 ---
 
 - hosts: raspberry
+  gather_facts: no
   become_user: "{{ ansible_user }}"
-  gather_facts: yes
+  vars:
+    skip_setup: true 
   roles:
-    - { install-packages, become: yes }
-    - download-git-repos
-    - { setup/raspberry, become: yes }
+    - {role: rpi/setup, when: skip_setup == false}
+    - {role: rpi/deploy-pyWeater}
 ...
