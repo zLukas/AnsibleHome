@@ -7,10 +7,10 @@ output "key_pair_name" {
 }
 
 output "key_pair_private" {
-    value ="key name: ${google_service_account_key.server_access.private_key}"
+    value ="private key: ${google_service_account_key.server_access.private_key}"
     sensitive = true
 }
 
 output "key_pair_public" {
-    value ="key name: ${google_service_account_key.server_access.public_key}"
+    value ="public key: ${google_service_account_key.server_access.public_key}"
 }
