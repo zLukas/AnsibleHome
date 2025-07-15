@@ -1,0 +1,46 @@
+---
+- name: Ensure GitHub Actions runner directory exists
+  file:
+    path: "{{ gha_runner_install_dir }}"
+    state: directory
+    mode: '0755'
+
+- name: Download GitHub Actions runner
+  get_url:
+    url: "{{ gha_runner_download_url}}"
+    dest: "{{ gha_runner_install_dir }}/actions-runner.tar.gz"
+    mode: '0644'
+  register: download_runner
+
+- name: Extract GitHub Actions runner
+  unarchive:
+    src: "{{ gha_runner_install_dir }}/actions-runner.tar.gz"
+    dest: "{{ gha_runner_install_dir }}"
+    remote_src: yes
+  when: download_runner.changed
+
+- name: Configure GitHub Actions runner
+  shell: |
+    sudo chmod +x ./config.sh
+    ./config.sh --url {{ gha_runner_repo_url }} \
+    --token {{ gha_runner_token }} \
+    --labels {{ gha_runner_labels | join(',') }} \
+    --unattended
+  args:
+    chdir: "{{ gha_runner_install_dir }}"
+  environment:
+    RUNNER_ALLOW_RUNASROOT: "1"
+  register: runner_configure
+  changed_when: "'Registered and ready to run jobs' in runner_configure.stdout"
+
+- name: Create systemd service for GitHub Actions runner
+  command: ./svc.sh install
+  args:
+    chdir: "{{ gha_runner_install_dir }}"
+  when: runner_configure.changed
+
+- name: Start GitHub Actions runner service
+  service:
+    name: actions.runner.{{ gha_runner_service_name | default('selfhosted') }}.service
+    state: started
+    enabled: yes

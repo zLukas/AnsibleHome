@@ -1,5 +1,0 @@
-- name: install gcloud
-  import_tasks: gcloud.yaml
-
-- name: set up pyDrive
-  import_tasks: py_drive.yaml

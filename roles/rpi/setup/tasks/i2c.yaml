@@ -1,0 +1,12 @@
+- name: enable i2c in /boot/config.txt
+  shell: sed -i s'/\#dtparam\=i2c_arm\=on/dtparam\=i2c_arm\=on/g' /boot/config.txt
+  when: inventory_hostname in groups["weather_station"]
+
+- name: add pi to i2c group 
+  user:
+    name: "{{ ansible_ssh_user}}"
+    groups: i2c
+
+- name: reboot raspberry
+  reboot:
+    reboot_timeout: 300 #s

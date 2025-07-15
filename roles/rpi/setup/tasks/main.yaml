@@ -1,20 +1,13 @@
 ---
 
 - name: install apt packages
+  become: yes
   package:
     name: "{{ rpi_packages }}"
     state: present
     update_cache: "{{ run_apt_update_upgrade }}"
 
-
-- name: enable i2c in /boot/config.txt
-  shell: sed -i s'/\#dtparam\=i2c_arm\=on/dtparam\=i2c_arm\=on/g' /boot/config.txt
-
-- name: reboot raspberry
-  reboot:
-    reboot_timeout: 300 #s 
-
-- name: add pi to i2c group 
-  user:
-    name: pi 
-    groups: i2c
+- name: setup i2c
+  ansible.builtin.include_tasks:
+    file: i2c.yaml
+  when: inventory_hostname in groups["weather-station"] 
