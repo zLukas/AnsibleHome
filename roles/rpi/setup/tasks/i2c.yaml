@@ -4,11 +4,9 @@
 
 - name: add pi to i2c group 
   user:
-    name: pi 
+    name: "{{ ansible_ssh_user}}"
     groups: i2c
-  when: inventory_hostname in groups["weather-station"]
 
 - name: reboot raspberry
   reboot:
     reboot_timeout: 300 #s
-  when: inventory_hostname in groups["weather_station"]
