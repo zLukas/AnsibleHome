@@ -1,0 +1,5 @@
+gha_runner_download_url: https://github.com/actions/runner/releases/download/v2.314.1/actions-runner-linux-x64-2.314.1.tar.gz
+gha_runner_install_dir: /opt/github-runner
+gha_runner_repo_url: ""
+gha_runner_token: ""
+gha_runner_labels: [arm32, self-hosted, linux, "{{ inventory_hostname }}"]

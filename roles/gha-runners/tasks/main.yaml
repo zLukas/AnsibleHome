@@ -1,0 +1,11 @@
+---
+- name: check os architecture (64bit or armv7 and above)
+  shell: uname -m | egrep '64|armv[7-9]|armv[1-9][0-9]' || true
+  register: os_arch
+
+- name: setup runner (64 bit)
+  ansible.builtin.include_tasks:
+    file: install.yaml
+  when: os_arch.stdout != ""
+
+...

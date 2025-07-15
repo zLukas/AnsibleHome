@@ -1,10 +1,15 @@
 ---
 run_apt_update_upgrade: no
 rpi_packages: 
-    - python3.9
-    - python3-pip 
     - git 
     - wget
+    - curl
     - vim 
-    - i2c-tools
+    - net-tools
+
+prometheus_binary:
+  url:  https://github.com/prometheus/prometheus/releases/download/v3.0.1/prometheus-3.0.1.linux-amd64.tar.gz
+  checksum: 43f6f228ef59e0c2f6994e489c5c76c6671553eaa99ded0aea1cd31366222916
+  tar_path: /tmp/prometheus-3.0.1.linux-amd64.tar.gz
+
 ...
