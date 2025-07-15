@@ -1,9 +1,0 @@
----
-
-- name: install dell packages
-  package:
-    name: "{{ dell_apt_packages }}"
-    state: present
-    update_cache: "{{ run_apt_update_upgrade }}"
-
-...

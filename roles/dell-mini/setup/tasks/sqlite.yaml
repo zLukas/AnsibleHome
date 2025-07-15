@@ -1,7 +1,0 @@
-
-- name: get sqlite prebuild binary
-  ansible.builtin.script: sqlite.sh
-  register: output
-
-- debug:
-    var: output.stdout_lines 

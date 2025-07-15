@@ -1,8 +1,0 @@
-- name: update apt packages
-  ansible.builtin.import_tasks: 
-    file: apt.yaml
-  when: update_packages == true
-
-- name: install sqlite
-  ansible.builtin.import_tasks: 
-    file: sqlite.yaml

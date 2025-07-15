@@ -1,8 +1,0 @@
----
--  hosts: home-server
-   gather_facts: no
-   vars:
-      update_packages: false
-   roles:
-      - dell-mini/setup
-      #- dell-mini/gcp
